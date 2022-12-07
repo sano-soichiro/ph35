@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shinzo SAITO">
+    <title>従業員情報削除 | ScottAdminSlim Sample</title>
+    <link rel="stylesheet" href="/ph35/scottadminslim/public/css/main.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>従業員情報削除</h1>
+        <p><a href="/ph35/scottadminslim/public/logout">ログアウト</a></p>
+    </header>
+    <nav id="breadcrumbs">
+        <ul>
+            <li><a href="/ph35/scottadminslim/">TOP</a></li>
+            <li><a href="/ph35/scottadminslim/public/emp/showEmpList">従業員リスト</a></li>
+            <li>従業員情報削除確認</li>
+        </ul>
+    </nav>
+    <section>
+        <p>以下の従業員情報を削除します。</p>
+        <dl>
+            <dt>従業員ID</dt>
+            <dd>{{emp.getId}}</dd>
+            <dt>従業員番号</dt>
+            <dd>{{emp.getEmNo}}</dd>
+            <dt>従業員名</dt>
+            <dd>{{emp.getEmName}}</dd>
+            <dt>役職</dt>
+            <dd>{{emp.getEmJob}}</dd>
+            <dt>上司番号</dt>
+            <dd>{{emp.getEmMgr}}</dd>
+            <dt>雇用日</dt>
+            <dd>{{emp.getEmHiredate}}</dd>
+            <dt>給与</dt>
+            <dd>{{emp.getEmSal}}</dd>
+            <dt>所属部門ID</dt>
+            <dd>{{emp.getDeptId}}</dd>
+        </dl>
+        <form action="/ph35/scottadminslim/public/emp/empDelete" method="post">
+            <input type="hidden" id="deleteEmpId" name="deleteEmpId" value="{{emp.getId}}">
+            <button type="submit">削除</button>
+        </form>
+    </section>
+</body>
+</html>

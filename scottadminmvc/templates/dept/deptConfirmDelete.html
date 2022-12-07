@@ -1,0 +1,47 @@
+{#
+/**
+ * PH35 サンプル5 マスターテーブル管理MVC版　Src18/18
+ * 部門情報登録画面。
+ *
+ * @author Shinzo SAITO
+ *
+ * ファイル名=deptConfirmDelete.html
+ * フォルダ=/ph35/scottadminmvc/templates/dept/
+ */
+#}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shinzo SAITO">
+    <title>部門情報削除 | ScottAdminMVC Sample</title>
+    <link rel="stylesheet" href="/ph35/scottadminmvc/public/css/main.css" type="text/css">
+</head>
+<body>
+    <h1>部門情報削除</h1>
+    <nav id="breadcrumbs">
+        <ul>
+            <li><a href="/ph35/scottadminmvc/"></a>TOP</li>
+            <li><a href="/ph35/scottadminmvc/public/dept/showDeptList.php">部門リスト</a></li>
+            <li>部門情報削除確認</li>
+        </ul>
+    </nav>
+    <section>
+        <p>以下の部門情報を削除します。</p>
+        <dl>
+            <dt>ID</dt>
+            <dd>{{dept.id}}</dd>
+            <dt>部門番号</dt>
+            <dd>{{dept.dpNo}}</dd>
+            <dt>部門名</dt>
+            <dd>{{dept.dpName}}</dd>
+            <dt>所在地</dt>
+            <dd>{{dept.dpLoc}}</dd>
+        </dl>
+        <form action="/ph35/scottadminmvc/public/dept/deptDelete.php" method="post">
+            <input type="hidden" id="deleteDeptId" name="deleteDeptId" value="{{dept.id}}">
+            <button type="submit">削除</button>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shinzo SAITO">
+    <title>従業員情報編集 | ScottAdmin Sample</title>
+    <link rel="stylesheet" href="/ph35/scottadminkan/public/css/main.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>従業員情報編集</h1>
+        <p><a href="/ph35/scottadminkan/public/logout.php">ログアウト</a></p>
+    </header>
+    <nav id="breadcrumbs">
+        <ul>
+            <li><a href="/ph35/scottadminkan/public/">TOP</a></li>
+            <li><a href="/ph35/scottadminkan/public/emp/showEmpList.php">従業員リスト</a></li>
+            <li>従業員情報編集</li>
+        </ul>
+    </nav>
+    {% if validationMsgs %}
+    <section id="errorMsg">
+        <p>以下のメッセージをご確認ください。</p>
+        <ul>
+        {% for msg in validationMsgs %}
+            <li>{{msg}}</li>
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    <section>
+        <p>情報を入力し、更新ボタンをクリックしてください。</p>
+        <form action="/ph35/scottadminkan/public/emp/empEdit.php" method="post" class="box">
+            従業員ID:&nbsp;{{emp.getId}}<br>
+            <input type="hidden" name="editEmpId" value="{{emp.getId}}">
+            <label for="editEmpNo">
+                従業員番号&nbsp;<span class="required">必須</span>
+                <input type="number" min=1000 max=9999 id="editEmpNo" name="editEmpNo" value="{{emp.getEmNo}}" required>
+            </label><br>
+            <label for="editEmpName">
+                従業員名&nbsp;<span class="required">必須</span>
+                <input type="text" id="editEmpName" name="editEmpName" value="{{emp.getEmName}}" required>
+            </label><br>
+            <label for="editEmpJob">
+                役職&nbsp;<span class="required">必須</span>
+                <input type="text" id="editEmpJob" name="editEmpJob" value="{{emp.getEmJob}}" required>
+            </label><br>
+            <label for="editEmpMgr">
+                上司&nbsp;<span class="required">必須</span>
+                <select name="editEmpMgr" id="editEmpMgr" required>
+                    {% if emp.getEmMgr == 0 %}
+                    <option value="0" selected>0：上司なし</option>
+                    {% else %}
+                    <option value="0">0：上司なし</option>
+                    {% endif %}
+                    {% for mgr in empMgrList %}
+                        {% if emp.getEmMgr != 0 and emp.getEmMgr == mgr[0] %}
+                    <option value="{{mgr[0]}}" selected>{{mgr[1] ~ ":" ~ mgr[0]}}</option>
+                        {% else %}
+                    <option value="{{mgr[0]}}">{{mgr[1] ~ ":" ~ mgr[0]}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label><br>
+            <label for="editEmpHiredate">
+                雇用日&nbsp;<span class="required">必須</span>
+                <select name="year" id="year" required>
+                    <option value="" selected>--</option>
+                    {% for year in 2022..1980 %}
+                        {% if emp.getEmHiredateYear == year %}
+                    <option value="{{year}}" selected>{{year}}</option>
+                        {% else %}
+                    <option value="{{year}}">{{year}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <select name="month" id="month" required>
+                    <option value="" selected>--</option>
+                    {% for month in 01..12 %}
+                        {% if emp.getEmHiredateMonth == month %}
+                    <option value="{{month}}" selected><?= $month ?>{{month}}</option>
+                        {% else %}
+                    <option value="{{month}}">{{month}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <select name="day" id="day" required>
+                    <option value="" selected>--</option>
+                    {% for day in 01..31 %}
+                        {% if emp.getEmHiredateDay == day %}
+                    <option value="{{day}}" selected>{{day}}</option>
+                        {% else %}
+                    <option value="{{day}}">{{day}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label><br>
+            <label for="editEmpSal">
+                給与&nbsp;<span class="required">必須</span>
+                <input type="number" min=0 id="editEmpSal" name="editEmpSal" value="{{emp.getEmSal}}" required>
+            </label><br>
+            <label for="editDpId">
+                所属部門&nbsp;<span class="required">必須</span>
+                <select name="editDeptId" id="editDeptId" required>
+                    <option value="" selected>--</option>
+                    {% for dept in deptList %}
+                        {% if emp.getDeptId == dept.getId %}
+                    <option value="{{dept.getId}}" selected>{{dept.getDpNo ~ ":" ~ dept.getDpName}}</option>
+                        {% else %}
+                    <option value="{{dept.getId}}">{{dept.getDpNo ~ ":" ~ dept.getDpName}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label><br>
+            <button type="submit">更新</button>
+        </form>
+    </section>
+</body>
+</html>

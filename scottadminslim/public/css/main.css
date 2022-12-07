@@ -1,0 +1,51 @@
+/*
+ * PH35 サンプル5 マスターテーブル管理MVC版　Src04/18
+ *
+ * CSSファイル
+ *
+ * ファイル名=main.css
+ * フォルダ=/ph35/scottadminmvc/public/css/
+ */
+
+@charset "utf-8";
+
+table{
+    border-collapse: collapse;
+}
+th, td{
+    border: solid 1px black;
+}
+#breadcrumbs ul li{
+    display: inline;
+    list-style-type: none;
+}
+#breadcrumbs{
+    margin-left: 0px;
+}
+#breadcrumbs ul{
+    margin-left: 0px;
+}
+#breadcrumbs ul .current{
+    color: red;
+}
+#breadcrumbs ul li:before{
+    content: " > ";
+}
+#breadcrumbs ul li:first-child::before{
+    content: none;
+}
+.required{
+    color: red;
+    font-size: 12px;
+}
+#errorMsg{
+    border: solid 1px orange;
+    color: red;
+    padding: 10px;
+    margin: 20px;
+    width: 400px;
+}
+.box{
+    border: solid green 1px;
+    padding: 10px;
+}

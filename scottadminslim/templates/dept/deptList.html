@@ -1,0 +1,77 @@
+{#
+/**
+ * PH35 サンプル5 マスターテーブル管理完版　Src16/20
+ * 部門情報リスト画面。
+ *
+ * @author Shinzo SAITO
+ *
+ * ファイル名=deptList.html
+ * フォルダ=/ph35/scottadminkan/templates/dept/
+ */
+#}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shinzo SAITO">
+    <title>部門情報リスト | ScottAdminSlim Sample</title>
+    <link rel="stylesheet" href="/ph35/scottadminslim/public/css/main.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>部門情報リスト</h1>
+        <p><a href="/ph35/scottadminslim/public/logout">ログアウト</a></p>
+    </header>
+    <nav id="breadcrumbs">
+        <ul>
+            <li><a href="/ph35/scottadminslim/public/goTop">TOP</a></li>
+            <li>部門情報リスト</li>
+        </ul>
+    </nav>
+    {% if flashMsg %}
+    <section id="flashMsg">
+        <p>
+            {{flashMsg}}
+        </p>
+    </section>
+    {% endif %}
+    <section>
+        <p>
+            新規登録は<a href="/ph35/scottadminslim/public/dept/goDeptAdd">こちら</a>から
+        </p>
+    </section>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>部門ID</th>
+                    <th>部門番号</th>
+                    <th>部門名</th>
+                    <th>所在地</th>
+                    <th colspan="2">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dpId, dept in deptList %}
+                <tr>
+                    <td>{{dpId}}</td>
+                    <td>{{dept.dpNo}}</td>
+                    <td>{{dept.dpName}}</td>
+                    <td>{{dept.dpLoc}}</td>
+                    <td>
+                        <a href="/ph35/scottadminslim/public/dept/prepareDeptEdit/{{dpId}}">編集</a>
+                    </td>
+                    <td>
+                        <a href="/ph35/scottadminslim/public/dept/confirmDeptDelete/{{dpId}}">削除</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">該当部門は存在しません。</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

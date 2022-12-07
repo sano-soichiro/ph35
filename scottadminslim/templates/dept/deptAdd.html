@@ -1,0 +1,61 @@
+{#
+/**
+ * PH35 サンプル5 マスターテーブル管理完版　Src18/20
+ * 部門情報登録画面。
+ *
+ * @author Shinzo SAITO
+ *
+ * ファイル名=deptAdd.html
+ * フォルダ=/ph35/scottadminkan/templates/dept/
+ */
+#}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Shinzo SAITO">
+    <title>部門情報追加 | ScottAdminSlim Sample</title>
+    <link rel="stylesheet" href="/ph35/scottadminslim/public/css/main.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>部門情報追加</h1>
+        <p><a href="/ph35/scottadminslim/public/logout">ログアウト</a></p>
+    </header>
+    <nav id="breadcrumbs">
+        <ul>
+            <li><a href="/ph35/scottadminslim/public/goTop">TOP</a></li>
+            <li><a href="/ph35/scottadminslim/public/dept/showDeptList">部門リスト</a></li>
+            <li>部門情報追加</li>
+        </ul>
+    </nav>
+    {% if validationMsgs %}
+    <section id="errorMsg">
+        <p>以下のメッセージをご確認ください。</p>
+        <ul>
+            {% for msg in validationMsgs %}
+            <li>{{msg}}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    <section>
+        <p>情報を入力し、登録ボタンをクリックしてください。</p>
+        <form action="/ph35/scottadminslim/public/dept/deptAdd" method="post" class="box">
+            <label for="addDpNo">
+                部門番号&nbsp;<span class="required">必須</span>
+                <input type="number" min="10" max="90" step="10" id="addDpNo" name="addDpNo" value="{{dept.dpNo}}" required>
+            </label><br>
+            <label for="addDpName">
+                部門名&nbsp;<span class="required">必須</span>
+                <input type="text" id="addDpName" name="addDpName" value="{{dept.dpName}}" required>
+            </label><br>
+            <label for="addDpLoc">
+                所在地
+                <input type="text" id="addDpLoc" name="addDpLoc" value="{{dept.dpLoc}}">
+            </label><br>
+            <button type="submit">登録</button>
+        </form>
+    </section>
+</body>
+</html>

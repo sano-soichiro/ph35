@@ -1,0 +1,10 @@
+{
+    "require": {
+        "twig/twig": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "LocalHalPH35\\ScottAdminMVC\\Classes\\":"classes/"
+        }
+    }
+}
